@@ -162,7 +162,7 @@ The candidate set is reduced by orders of magnitude while preserving true matche
 
 * **Recursive CTE:** We use a recursive Common Table Expression to perform a "breadth-first search" across the network. This ensures Transitive Consistency: if A matches B, and B matches C, the system correctly groups A and C together even if they didn't share enough direct signals to match on their own.
 
-**Survivorship Strategy: "Lowest-ID-Wins"** A critical component of any Master Data Management (MDM) system is the **Survivorship Logic**—deciding which record's attributes "win" or anchor the group.
+**Survivorship Strategy: "Lowest-ID-Wins"** A critical component of any Master Data Management (MDM) system is the **Survivorship Logic**-deciding which record's attributes "win" or anchor the group.
 
 * **Account Seniority:** In this pipeline, Acct_ID is sequential. By applying a **Lowest-ID-Wins** strategy, we ensure the **Golden Customer ID** is anchored to the customer’s oldest known record.
 
