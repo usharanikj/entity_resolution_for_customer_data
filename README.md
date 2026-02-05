@@ -207,9 +207,7 @@ The design scales to **millions of records** with minimal refactoring.
 
 ---
 
-## 7. Key Skills Demonstrated (Data Analyst Focus)
-
-* Advanced SQL for analytics engineering use cases
+## 7. Key Skills Demonstrated
 
 * Data cleaning and standardization at scale
 
@@ -247,35 +245,3 @@ For analytics teams, this pipeline directly enables:
 
 **Bottom-Line Impact**
 By resolving **20,000 redundant records**, this pipeline corrected a **25% overestimation of the active customer base**, directly preventing misallocation of marketing acquisition and retention budgets.
-
----
-
-## 9. Possible Extensions
-
-* Confidence scoring instead of rule labels
-* Survivorship logic for Golden Records
-* Incremental matching for streaming data
-* Hybrid ML + rules architecture
-* Visualization of clusters using graph tools
-
----
-
-## 10. Repository Structure (Suggested)
-
-```
-├── data/
-│   └── banking_data_final.csv
-├── sql/
-│   └── entity_resolution_pipeline.sql
-├── README.md
-└── demo/
-    └── walkthrough_video_link.txt
-```
-
----
-
-## Final Note
-
-This project intentionally prioritizes **clarity, correctness, and real-world applicability** over black-box approaches. It reflects how entity resolution is actually implemented in regulated, high-stakes data environments.
-
-If you are evaluating this project: every merge is explainable, reproducible, and defensible.
