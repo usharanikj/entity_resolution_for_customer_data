@@ -176,8 +176,6 @@ The candidate set is reduced by orders of magnitude while preserving true matche
 
 ## 5. Quality Validation & Analytical Impact Review
 
-From a Data Analyst perspective, the key question is not *"Can we match records?"* but *"How does this improve analytical accuracy?"*
-
 ### Built-In Stewardship View
 
 The pipeline includes an explicit **stewardship and audit view**:
