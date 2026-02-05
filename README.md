@@ -152,7 +152,7 @@ The candidate set is reduced by orders of magnitude while preserving true matche
 
 * Auditability: In financial services, "black-box" merges are high-risk; deterministic rules provide a clear audit trail for data stewards.
 
-**Output Table:** final_matches
+**Output Table:** `final_matches`
 
 ---
 
