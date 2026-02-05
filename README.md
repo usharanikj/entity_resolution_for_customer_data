@@ -153,25 +153,22 @@ The candidate set is reduced by orders of magnitude while preserving true matche
 
 ---
 
-### 4.4 Graph-Based Clustering
+### 4.4 Graph-Based Clustering & Golden ID Assignment
+**Concept** Entity resolution is fundamentally a graph problem. By treating individual accounts as **nodes** and high-confidence matches as edges, we can identify isolated groups (connected components) that represent a single real-world individual.
 
-**Concept**
-Entity resolution is fundamentally a *graph problem*.
+**Implementation: Transitive Closure**
 
-* Nodes → Accounts
-* Edges → High-confidence matches
+**Adjacency List:** We build a bidirectional list of all matched pairs. If Account A matches Account B, we ensure the relationship is mapped both ways to facilitate traversal.
 
-**Implementation**
+**Recursive CTE:** We use a recursive Common Table Expression to perform a "breadth-first search" across the network. This ensures Transitive Consistency: if A matches B, and B matches C, the system correctly groups A and C together even if they didn't share enough direct signals to match on their own.
 
-* Build a bidirectional adjacency list from matched pairs
-* Use a recursive CTE to compute transitive closure
-* Apply a **Lowest-ID-Wins survivorship strategy**, where the smallest `acct_id` becomes the Golden Customer ID
+**Survivorship Strategy: "Lowest-ID-Wins"** A critical component of any Master Data Management (MDM) system is the **Survivorship Logic**—deciding which record's attributes "win" or anchor the group.
 
-This ensures:
+**Account Seniority:** In this pipeline, Acct_ID is sequential. By applying a **Lowest-ID-Wins** strategy, we ensure the **Golden Customer ID** is anchored to the customer’s oldest known record.
 
-* Transitive consistency (A=B and B=C ⇒ A=C)
-* Deterministic and reproducible customer identifiers
-* The oldest or primary account reference anchors the cluster
+**Stability:** This approach is deterministic and reproducible. Unlike "random" clustering, this ensures that as new data flows in, the Golden ID remains stable, preserving the integrity of longitudinal customer history.
+
+**Why This Matters for Analytics** This stage removes the "fragmentation" error. By assigning a single customer_id to multiple acct_id entries, we enable a Single Customer View, allowing the business to accurately calculate "Total Products per Customer" or "Lifetime Value" across multiple legacy accounts.
 
 **Output Table:** `cust_clusters`
 
