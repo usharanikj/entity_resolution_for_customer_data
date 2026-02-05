@@ -113,45 +113,46 @@ The candidate set is reduced by orders of magnitude while preserving true matche
 ---
 
 ### 4.3 Fuzzy Scoring & Match Classification
+**Extension Used:** pg_trgm
 
-**Extension Used:** `pg_trgm`
+**Similarity Metrics** To handle typos and variations, the pipeline calculates Trigram Similarity scores for:
 
-**Similarity Metrics**
+* First name, Last name, and Full Address.
 
-* Trigram similarity for:
+* A score of 1.0 indicates an exact match, while our rules typically require > 0.80 for high-confidence fuzzy matching.
 
-  * First name
-  * Last name
-  * Address
+**Rule Engine Design** Matches are classified using a Tiered Modular Schema. This numbering system (01–18) is intentionally non-sequential to allow for future rule injection (e.g., adding specialized credit-bureau rules in the 11–15 range) without breaking the existing categorization.
 
-**Additional Signals**
+**Tier 0: Deterministic & Identity-Led (Rules 01–05)**
+* Focus: Strongest identifiers (Gov ID, Email, Phone).
 
-* Year-of-birth comparison
-* Token combinations (Email, Phone, Government ID)
+* Logic: If the Government ID matches and names are similar, it is a "Verified Identity."
 
-**Rule Engine Design**
+* Safety: Requires at least 75%–80% name similarity to prevent "ID theft" or data-entry errors from merging two different people who were accidentally assigned the same ID.
 
-Matches are classified using **explicit, auditable rules**, implemented as seven logical groups (RULE_01 through RULE_18):
+**Tier 1: Digital Token & Address Confirmation (Rules 06–10)**
+* Focus: Overlapping contact signals.
 
-* **Verified Identity Rules (RULE_01–02):** Government ID with strong name agreement
-* **Digital Identity Rules (RULE_03–05):** Email and/or phone reinforced by name similarity
-* **Address Confirmation Rules (RULE_06):** High address similarity plus identity tokens
-* **Missing Government ID Rules (RULE_07–09):** Conservative matching when Gov ID is absent
-* **ID + Single Token Rules (RULE_10):** Government ID combined with email or phone
-* **DOB-Aware Fuzzy Rules (RULE_16–17):** Allow ±1 year tolerance on birth year to handle common data entry errors
-* **Fuzzy Fallback Rule (RULE_18):** Government ID with strong average name similarity
+* Logic: Combines high address similarity (addr_score > 0.75) with at least one digital token (Email or Phone).
 
-**Why DOB-Aware Rules Matter**
-Allowing a one-year tolerance on date of birth reflects real-world data entry issues and prevents false negatives without meaningfully increasing false positives.
+* Symmetry: These rules include specific logic to handle cases where one record is missing a Government ID, ensuring that a "null" field doesn't block a high-confidence match between two accounts sharing an email and phone.
+
+**Tier 2: Error-Tolerant & Fuzzy Fallback (Rules 16–18)**
+* Focus: Handling data entry "fat-finger" errors.
+
+* DOB-Awareness: Allows for a ±1 year tolerance on Birth Year. This is critical for catching duplicates where a user (or clerk) enters "1985" instead of "1984."
+
+* Fuzzy Fallback: Uses an average of First and Last name scores to catch significant misspellings (e.g., "Jonathon" vs "John") when the Government ID is an exact match.
 
 **Why Rules Instead of ML?**
 
-* Full explainability
-* Business-friendly governance
-* Deterministic, reproducible outcomes
-* Easy validation by analysts and data stewards
+* Full Explainability: Every merge can be traced back to a specific rule (e.g., "Merged via RULE_06").
 
-**Output Table:** `final_matches`
+* Business Governance: Analysts can tweak thresholds (e.g., moving from 0.80 to 0.85) without retraining a model.
+
+* Auditability: In financial services, "black-box" merges are high-risk; deterministic rules provide a clear audit trail for data stewards.
+
+**Output Table:** final_matches
 
 ---
 
