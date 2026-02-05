@@ -2,9 +2,6 @@
 
 ## 1. Project Overview
 
-**Target Role Alignment: Data Analyst**
-This project is intentionally positioned to demonstrate how a Data Analyst can move beyond reporting into **data quality, customer analytics readiness, and analytical correctness**. Rather than focusing on ML-heavy approaches, the solution emphasizes **SQL-first logic, transparent business rules, and measurable impact on downstream analysis**.
-
 **Objective**
 Design and implement a *production-grade entity resolution system* that identifies and clusters duplicate customer accounts into a single **Golden Customer ID**. The project simulates a real-world banking / financial services scenario where fragmented customer records exist due to channel silos, data-entry errors, and missing identifiers.
 
