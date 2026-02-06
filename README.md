@@ -23,7 +23,7 @@ This project solves the problem using a **rule-driven, fuzzy-matching–aware en
 
 **Dataset Scale**
 
-* **100,000** raw account records
+* **100,000** raw accounts and its demographic data
 * **Account-level granularity** (multiple accounts may belong to the same real-world customer)
 
 **Observed Data Quality Signals (Exploratory Analysis)**
