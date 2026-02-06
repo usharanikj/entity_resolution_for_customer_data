@@ -35,8 +35,8 @@ This project solves the problem using a **rule-driven, fuzzy-matching–aware en
 * **Address Complexity:** Addresses are free-text and highly inconsistent, making exact matching unreliable.
 
 **Why This Matters for Analytics**
-Without deduplication, customer-level metrics such as active customer count, retention, and lifetime value would be **overstated by ~25%**, leading to incorrect business decisions.
-
+Customer ID creation resolved ~25% initial under-linkage by consolidating 100K accounts into 80K distinct customers, ensuring all accounts of a customer were evaluated together.
+This prevented incorrect account-level decisions, where the same customer could appear both high and low-risk. This enabled accurate risk, marketing, servicing, and fraud assessments at the true customer level.
 ---
 
 ## 3. Solution Architecture
