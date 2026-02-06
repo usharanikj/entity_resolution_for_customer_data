@@ -88,6 +88,7 @@ Cleaning and standardizing this data makes reliable customer matching possible a
 
 **Problem Addressed:**
 A full N² comparison does not scale.
+Comparing every account with every other account to find matches is computationally expensive, so we instead use logic that narrows comparisons to accounts with a higher probability of belonging to the same customer.
 
 **Strategy**
 Generate *candidate pairs* only when records share at least one strong signal:
