@@ -116,7 +116,7 @@ The candidate set is reduced by orders of magnitude while preserving true matche
 ### 4.3 Fuzzy Scoring & Match Classification
 **Extension (text matching algorithm) Used:** pg_trgm
 
-**Similarity Metrics** To handle typos and variations, the pipeline calculates Trigram Similarity scores for:
+**Similarity Metrics** To handle typos and variations, the algorithm calculates Trigram Similarity scores for:
 
 * First name, Last name, and Full Address.
 
@@ -129,7 +129,7 @@ The candidate set is reduced by orders of magnitude while preserving true matche
 
 * Logic: If the Government ID matches and names are similar, it is a "Verified Identity."
 
-* Safety: Requires at least 75%–80% name similarity to prevent "ID theft" or data-entry errors from merging two different people who were accidentally assigned the same ID.
+* Safety: Requires at least 70%–80% name similarity to prevent "ID theft" or data-entry errors from merging two different people who were accidentally assigned the same ID.
 
 **Tier 1: Digital Token & Address Confirmation (Rules 06–10)**
 * Focus: Overlapping contact signals.
