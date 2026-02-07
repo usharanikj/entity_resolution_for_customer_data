@@ -48,7 +48,7 @@ Raw Data
    ↓
 Standardization & Cleaning
    ↓
-Blocking (Candidate Selection and pairing)
+Blocking (Candidate Selection and Pairing)
    ↓
 Fuzzy Scoring + Rule-Based Decisions
    ↓
