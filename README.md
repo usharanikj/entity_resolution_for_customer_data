@@ -145,14 +145,6 @@ The candidate set is reduced by orders of magnitude while preserving true matche
 
 * Fuzzy Fallback: Uses an average of First and Last name scores to catch significant misspellings (e.g., "Jonathon" vs "John") when the Government ID is an exact match.
 
-**Why Rules Instead of ML?**
-
-* Full Explainability: Every merge can be traced back to a specific rule (e.g., "Merged via RULE_06").
-
-* Business Governance: Analysts can tweak thresholds (e.g., moving from 0.80 to 0.85) without retraining a model.
-
-* Auditability: In financial services, "black-box" merges are high-risk; deterministic rules provide a clear audit trail for data stewards.
-
 **Output Table:** `final_matches`
 
 ---
