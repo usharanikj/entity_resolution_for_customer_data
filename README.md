@@ -3,10 +3,10 @@
 ## 1. Project Overview
 
 **Objective:**
-Design and implement an *entity resolution system* that identifies and clusters multiple customer accounts into a single **Golden Customer ID**. The project simulates a real-world banking / financial services scenario where fragmented customer records exist due to channel silos, data-entry errors, and missing identifiers.
+Design and implement an *entity resolution system* that identifies and clusters multiple-customer-accounts into a single **Golden Customer ID**. The project simulates a real-world banking / financial services scenario where fragmented customer records exist due to channel silos, data-entry errors, and missing identifiers.
 
 **Core Problem**
-Multiple account records may belong to the same real-world individual, but:
+Multiple-account records may belong to the same real-world individual, but:
 
 * Names are inconsistent or misspelled
 * Identifiers may be missing or partially captured
